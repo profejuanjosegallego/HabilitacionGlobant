@@ -41,12 +41,12 @@ public class SmabMenu {
                         case 2 -> calcularSalario(sc);
                         case 3 -> listarEmpleados();
                         case 4 -> empleadoMayorSalario();
-                        case 0 -> System.out.println(ROJO + "Saliendo del programa..." + RESET);
-                        default -> System.out.println(ROJO + "Opción inválida, intenta de nuevo." + RESET);
+                        case 0 -> System.out.println(ROJO + "\uD83D\uDC4B Saliendo del programa..." + RESET);
+                        default -> System.out.println(ROJO + "⚠\uFE0F Opción inválida, intenta de nuevo." + RESET);
                     }
                 } catch (InputMismatchException e) {
                     // Si el usuario mete letras en lugar de números.
-                    System.out.println(ROJO + "Error: debes ingresar un número." + RESET);
+                    System.out.println(ROJO + "❌ Error: debes ingresar un número." + RESET);
                     sc.nextLine(); // Si hago esto se evitan errores.
                 }
             } while (opcion != 0);
@@ -67,7 +67,7 @@ public class SmabMenu {
         // Registro de un nuevo empleado:
         public static void registrarEmpleado(Scanner sc) {
             try {
-                System.out.println(AZUL + "\n=== Registro de Empleado ===" + RESET);
+                System.out.println(AZUL + "\n=== \uD83E\uDDD1\u200D\uD83D\uDCBC Registro de Empleado \uD83E\uDDD1\u200D\uD83D\uDCBC ===" + RESET);
 
                 System.out.print("ID (solo números, ej: 123): ");
                 int id = sc.nextInt();
@@ -75,32 +75,32 @@ public class SmabMenu {
 
                 // Verifico si ya existe ese ID.
                 if (empleados.containsKey(id)) {
-                    System.out.println(ROJO + "\nError: ya existe un empleado con ese ID." + RESET);
+                    System.out.println(ROJO + "\n⚠\uFE0FError: ya existe un empleado con ese ID." + RESET);
                     return;
                 }
 
                 // Pido los demás datos.
-                System.out.print("Nombre: ");
+                System.out.print("\uD83E\uDDD1\u200D\uD83D\uDCBC Nombre: ");
                 String nombre = sc.nextLine();
 
-                System.out.print("Cargo: ");
+                System.out.print("\uD83D\uDCBC Cargo: ");
                 String cargo = sc.nextLine();
 
-                System.out.print("Valor base de hora (ej: 10,50): ");
+                System.out.print("\uD83D\uDCB2 Valor base de hora (ej: 10,50): ");
                 double valorHora = sc.nextDouble();
 
-                System.out.print("Número de horas trabajadas al mes: ");
+                System.out.print("⏰ Número de horas trabajadas al mes: ");
                 int horasMes = sc.nextInt();
 
                 // Guardo todo en un arreglo de String. (No sé porque sale verde :c)
                 String[] datos = {nombre, cargo, String.valueOf(valorHora), String.valueOf(horasMes)};
                 empleados.put(id, datos);
 
-                System.out.println(NARANJA_CLARO + "\n¡Empleado registrado con éxito!" + RESET);
+                System.out.println(NARANJA_CLARO + "\n✅ ¡Empleado registrado con éxito!" + RESET);
 
             } catch (InputMismatchException e) {
                 // Si el usuario mete mal un número.
-                System.out.println(ROJO + "Error: tipo de dato inválido." + RESET);
+                System.out.println(ROJO + "❌ Error: tipo de dato inválido." + RESET);
                 sc.nextLine();
             }
         }
@@ -108,12 +108,12 @@ public class SmabMenu {
         // Calculo el salario de un empleado por ID:
         public static void calcularSalario(Scanner sc) {
             if (empleados.isEmpty()) {
-                System.out.println(ROJO + "No hay empleados registrados." + RESET);
+                System.out.println(ROJO + "⚠\uFE0F No hay empleados registrados." + RESET);
                 return;
             }
 
             try {
-                System.out.print("Ingresa el ID del empleado: ");
+                System.out.print("\uD83D\uDD0E Ingresa el ID del empleado: ");
                 int id = sc.nextInt();
 
                 if (empleados.containsKey(id)) {
@@ -122,13 +122,13 @@ public class SmabMenu {
                     int horasMes = Integer.parseInt(datos[3]);
                     double salario = valorHora * horasMes;
 
-                    System.out.println(AMARILLO + "Salario mensual de " + datos[0] + " (" + datos[1] + "): " + salario + RESET);
+                    System.out.println(AMARILLO + "\uD83D\uDCB0 Salario mensual de " + datos[0] + " (" + datos[1] + "): " + salario + RESET);
                 } else {
                     // Si no encuentra el empleado.
-                    System.out.println(ROJO + "Empleado no encontrado." + RESET);
+                    System.out.println(ROJO + "❌ Empleado no encontrado." + RESET);
                 }
             } catch (InputMismatchException e) {
-                System.out.println(ROJO + "Error: debes ingresar un número válido." + RESET);
+                System.out.println(ROJO + "⚠\uFE0F Error: debes ingresar un número válido." + RESET);
                 sc.nextLine();
             }
         }
@@ -136,11 +136,11 @@ public class SmabMenu {
         // Listar todos los empleados en formato tabla.
         public static void listarEmpleados() {
             if (empleados.isEmpty()) {
-                System.out.println(ROJO + "No hay empleados registrados." + RESET);
+                System.out.println(ROJO + "⚠\uFE0F No hay empleados registrados." + RESET);
                 return;
             }
 
-            System.out.println(DORADO + NEGRITA + "\n=== Lista de Empleados ===" + RESET);
+            System.out.println(DORADO + NEGRITA + "\n=== \uD83D\uDCCA Lista de Empleados \uD83D\uDCCA ===" + RESET);
             System.out.printf("%-5s %-15s %-15s %-12s %-10s\n", "ID", "Nombre", "Cargo", "ValorHora", "HorasMes");
             System.out.println("-------------------------------------------------------");
 
@@ -154,7 +154,7 @@ public class SmabMenu {
         // Busca al empleado con mayor salario.
         public static void empleadoMayorSalario() {
             if (empleados.isEmpty()) {
-                System.out.println(ROJO + "No hay empleados registrados." + RESET);
+                System.out.println(ROJO + "⚠\uFE0F No hay empleados registrados." + RESET);
                 return;
             }
 
@@ -176,9 +176,9 @@ public class SmabMenu {
 
             // Muestro el que tiene mayor salario.
             String[] datos = empleados.get(idMax);
-            System.out.println(AMARILLO_OSCURO + "\nEmpleado con mayor salario:" + RESET);
-            System.out.println("Nombre: " + datos[0]);
-            System.out.println("Cargo: " + datos[1]);
-            System.out.println("Salario: " + maxSalario);
+            System.out.println(AMARILLO_OSCURO + "\n\uD83C\uDFC6 Empleado con mayor salario:" + RESET);
+            System.out.println("\uD83D\uDC64 Nombre: " + datos[0]);
+            System.out.println("\uD83D\uDCBC Cargo: " + datos[1]);
+            System.out.println("\uD83D\uDCB0 Salario: " + maxSalario);
         }
     }

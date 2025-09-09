@@ -38,7 +38,7 @@ Emojis que hagan más clara la interacción con el usuario.*/
     static String quitar = "\u001B[0m";
     static String blue = "\u001B[34m";
     static String amarillo= "\u001B[33m";
-    static String cyan="\u001B[46m";
+    static String cyan="\u001B[36m";
 
     public static void main(String[] args) {
         int opcion = 0;
@@ -93,7 +93,6 @@ Emojis que hagan más clara la interacción con el usuario.*/
         String nombre = leerdata.nextLine();
         boolean encontrado = false;
         for (var entry : empleados.entrySet()) {
-            // Busca si la clave empieza con el nombre
             if (entry.getKey().startsWith(nombre)) {
                 System.out.println("💰 El salario mensual de " + entry.getKey() + " es: " + entry.getValue());
                 encontrado = true;

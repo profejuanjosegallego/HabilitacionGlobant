@@ -71,7 +71,6 @@ Emojis que hagan más clara la interacción con el usuario.*/
             }
         }
     }
-
     static void registrarEmpleado() {
         System.out.println("Registro empleado");
         System.out.print("Digite nombre del empleado: ");
@@ -89,11 +88,19 @@ Emojis que hagan más clara la interacción con el usuario.*/
 
         System.out.println(cyan+"✅ Empleado registrado exitosamente."+quitar);
     }
-
     static void calcularSalarioMensual() {
-        System.out.println("Calcular Salario Mensual");
-    }
+        System.out.println("Ingrese el nombre del salario que desea consultar");
+        String nombre = leerdata.nextLine();
+        boolean encontrado = false;
+        for (var entry : empleados.entrySet()) {
+            // Busca si la clave empieza con el nombre
+            if (entry.getKey().startsWith(nombre)) {
+                System.out.println("💰 El salario mensual de " + entry.getKey() + " es: " + entry.getValue());
+                encontrado = true;
+            }
+        }
 
+    }
     static void verListaEmpleados() {
         System.out.println("📋 Lista de empleados:");
         for (var entry : empleados.entrySet()) {
